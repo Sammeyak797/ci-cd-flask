@@ -26,6 +26,6 @@ jobs:
       - name: Deploy to Render
         uses: render-oss/render-action@v1
         with:
-          apiKey: ${{ rnd_RI5TA7rynctFPx5M4383u3nohIlt }}
-          serviceId: ${{ srv-d4pafreuk2gs73d97v10 }}
-          email: ${{ wankhadesammeyak@gmail.com }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          email: ${{ secrets.RENDER_EMAIL }}
