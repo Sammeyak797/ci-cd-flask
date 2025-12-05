@@ -70,7 +70,7 @@ def version():
 # --- Single-file styled landing page (no static folder needed) ---
 @app.route("/")
 def index():
-    html = f"""
+    html = """
     <!doctype html>
     <html>
     <head>
