@@ -7,12 +7,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker
+      - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
@@ -21,11 +20,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Deploy to Render
-        uses: render-oss/render-action@v1
+      - name: Deploy to Render (trigger)
+        uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          apiKey: ${{ secrets.RENDER_API_KEY }}
-          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
-          email: ${{ secrets.RENDER_EMAIL }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          # optional: wait for success (string 'true' or 'false')
+          wait-for-success: "true"
